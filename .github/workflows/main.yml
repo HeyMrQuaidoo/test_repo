@@ -1,0 +1,27 @@
+name: Python Script Workflow
+
+on: [push]
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt  # if you have dependencies
+    
+    - name: Run script
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        DEBUG_MODE: ${{ vars.DEBUG_MODE }}
+      run: python secure_script.py
