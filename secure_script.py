@@ -16,6 +16,8 @@ def get_optional_env_var(var_name: str, default: str = None) -> Optional[str]:
 
 def main():
     try:
+
+        print("Main secure script")
         # Get required variables
         api_key = get_required_env_var('API_KEY')
         database_url = get_required_env_var('DATABASE_URL')
